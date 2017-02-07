@@ -1,0 +1,29 @@
+{
+  "name": "messageformat-brunch",
+  "version": "1.0.0",
+  "description": "MessageFormat plugin for Brunch.io",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap test/*.js"
+  },
+  "engines": {
+    "node": ">= 4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ximik/messageformat-brunch.git"
+  },
+  "keywords": [],
+  "author": "Alex Tsokurov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Ximik/messageformat-brunch/issues"
+  },
+  "homepage": "https://github.com/Ximik/messageformat-brunch#readme",
+  "devDependencies": {
+    "tap": "^9.0.3"
+  },
+  "dependencies": {
+    "messageformat": "^1.0.2"
+  }
+}
