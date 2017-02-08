@@ -3,13 +3,13 @@
 const basename = require('path').basename,
       MessageFormat = require('messageformat');
 
-class MessageformatCompiler {
+class MessageFormatCompiler {
   constructor(config) {
     this.mfs = {};
-    this.config = config.plugins.messageformat || {};
-    Object.assign(this.config, {
-      formatters: {}
-    });
+    this.config = Object.assign({
+      formatters: false,
+      intl: false
+    }, config.plugins.messageformat || {});
   }
 
   compile(file) {
@@ -21,17 +21,19 @@ class MessageformatCompiler {
       mf = this.mfs[lang];
     } else {
       mf = this.mfs[lang] = new MessageFormat(lang);
-      mf.addFormatters(this.config.formatters);
+      const { formatters, intl } = this.config;
+      if (formatters) mf.addFormatters(formatters);
+      if (intl) mf.setIntlSupport(intl);
     }
 
-    return "module.exports =  (function () { " + mf.compile(JSON.parse(data)).toString() + " })();";
+    return mf.compile(JSON.parse(data)).toString('module.exports');
   }
 }
 
-Object.assign(MessageformatCompiler.prototype, {
+Object.assign(MessageFormatCompiler.prototype, {
   brunchPlugin: true,
   type: 'javascript',
   pattern: /[a-zA-Z]+\.lang\.json$/
 });
 
-module.exports = MessageformatCompiler;
+module.exports = MessageFormatCompiler;

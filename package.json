@@ -1,6 +1,6 @@
 {
   "name": "messageformat-brunch",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "MessageFormat plugin for Brunch.io",
   "main": "index.js",
   "scripts": {
